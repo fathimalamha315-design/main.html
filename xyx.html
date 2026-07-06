@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard: Clock & Motivation</title>
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* பிங்க் நிறத்திற்கு பதில் அமைதியான நீல-சாம்பல் கிரேடியண்ட் */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            gap: 25px; /* கடிகாரத்திற்கும் பொட்டிக்கும் நடுவில் இடைவெளி */
+        }
+
+        /* டிஜிட்டல் கடிகார வடிவமைப்பு */
+        .clock {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px 35px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* பொன்மொழிகள் பெட்டி வடிவமைப்பு */
+        .box {
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95); /* தெளிவான நவீன வெள்ளை பின்னணி */
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        p { 
+            font-size: 20px; 
+            color: #2c3e50; 
+            line-height: 1.6; 
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* பட்டன் வடிவமைப்பு - புதிய டீல் நீல நிறம் */
+        button {
+            background: #00b4db;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 25px;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        /* பட்டன் மீது மவுஸ் வைக்கும் போது மாறும் எஃபெக்ட் */
+        button:hover {
+            background: #0083b0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 131, 176, 0.6);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- டிஜிட்டல் கடிகாரம் -->
+    <div class="clock" id="clock">00:00:00 PM</div>
+
+    <!-- பொன்மொழிகள் பெட்டி -->
+    <div class="box">
+        <p id="quote">"Believing in yourself is the first secret to success."</p>
+        <button onclick="newQuote()">Next Quote ✨</button>
+    </div>
+
+    <script>
+        // கடிகாரத்திற்கான ஜாவாஸ்கிரிப்ட்
+        function updateClock() {
+            const now = new Date();
+            let timeString = now.toLocaleTimeString();
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock(); // ஆரம்ப அழைப்பு
+
+        // பொன்மொழிகளுக்கான ஜாவாஸ்கிரிப்ட்
+        const quotes = [
+            '"Believing in yourself is the first secret to success."',
+            '"Your limitation—it’s only your imagination."',
+            '"Push yourself, because no one else is going to do it for you."',
+            '"Great things never come from comfort zones."',
+            '"Dream it. Wish it. Do it."'
+        ];
+
+        function newQuote() {
+            const index = Math.floor(Math.random() * quotes.length);
+            document.getElementById('quote').textContent = quotes[index];
+        }
+    </script>
+</body>
+</html>
